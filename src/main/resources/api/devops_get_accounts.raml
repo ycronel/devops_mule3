@@ -1,0 +1,12 @@
+#%RAML 1.0
+title: devops_get_accounts
+
+/accounts:
+  get:
+    description: get a collection of accounts
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/example.json
+    
