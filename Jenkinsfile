@@ -3,6 +3,10 @@ pipeline {
     environment {
         ANYPOINT = credentials('ANYPOINT')
     }
+    tools { 
+        maven maven 
+        jdk jdk11
+    }
     triggers {
         pollSCM('H/2 * * * *') 
     }
