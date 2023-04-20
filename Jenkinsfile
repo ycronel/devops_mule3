@@ -24,6 +24,7 @@ pipeline {
                 sh "mvn -X clean deploy -DmuleDeploy -Dusername=${ANYPOINT_USR} -Dpassword=${ANYPOINT_PSW} -DappName=testjenkinsapp-sandbox -Denvironment=Sandbox" 
             }
         }
+        
         stage('Deploy CloudHub to test') { 
 	        when {
 	          branch 'test'
