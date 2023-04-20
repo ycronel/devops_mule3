@@ -16,9 +16,20 @@ pipeline {
                 sh "mvn clean install"
             }
         }
-        stage('Deploy CloudHub') { 
+        stage('Deploy CloudHub to sandbox') { 
+        	when {
+	          branch 'main'
+	      	}
             steps {
-                sh "mvn -X clean deploy -DmuleDeploy -Dusername=${ANYPOINT_USR} -Dpassword=${ANYPOINT_PSW} -DappName=testjenkinsapp -Denvironment=Sandbox" 
+                sh "mvn -X clean deploy -DmuleDeploy -Dusername=${ANYPOINT_USR} -Dpassword=${ANYPOINT_PSW} -DappName=testjenkinsapp-sandbox -Denvironment=Sandbox" 
+            }
+        }
+        stage('Deploy CloudHub to test') { 
+	        when {
+	          branch 'test'
+	      	}
+            steps {
+                sh "mvn -X clean deploy -DmuleDeploy -Dusername=${ANYPOINT_USR} -Dpassword=${ANYPOINT_PSW} -DappName=testjenkinsapp-test -Denvironment=Test" 
             }
         }   
   }
